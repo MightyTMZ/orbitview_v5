@@ -35,7 +35,8 @@ export default function Waitlist() {
     setIsSubmitting(true);
     setError(null);
 
-    const waitlistUserEndpoint = "http://127.0.0.1:8000/users/waitlist/";
+    const waitlistUserEndpoint =
+      "https://orbitview.pythonanywhere.com/users/waitlist/";
 
     try {
       const response = await fetch(waitlistUserEndpoint, {
