@@ -11,7 +11,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "Create Avatar", href: "/create" },
   { name: "Train Avatar", href: "/train" },
-  { name: "Explore", href: "/explore" },
+  { name: "Explore", href: "/waitlist" },
 ];
 
 export function Navbar() {
