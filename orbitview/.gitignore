@@ -7,3 +7,5 @@ __pycache__
 examples.txt
 
 .env
+
+cloud_settings.py

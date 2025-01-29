@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Orbit, Sparkles } from "lucide-react";
+import { ReactTyped } from "react-typed";
 
 interface FormData {
   full_name: string;
@@ -23,26 +24,46 @@ interface ApiResponse {
 }
 
 const jobTitles = [
-  "Engineer",
-  "Product Manager",
-  "Designer",
-  "Artist",
-  "Marketing Specialist",
+  "Professional",
+  "Specialist",
   "Consultant",
-  "Professor",
-  "Teacher",
-  "Advisor",
+  "Analyst",
+  "Engineer",
   "Manager",
-  "C-Level Executive",
+  "Strategist",
+  "Coordinator",
+  "Advisor",
+  "Executive",
+  "Senior Software Engineer",
+  "Data Scientist",
+  "Product Manager",
+  "UX Designer",
+  "Marketing Strategist",
+  "Business Consultant",
+  "Financial Advisor",
   "Healthcare Professional",
   "Education Specialist",
-  "Scientist",
-  "Lawyer",
   "Legal Expert",
-  "Public Speaker",
-  "Policy Advisor",
-  "Diplomat",
-  "Sports Coach",
+];
+
+const industries = [
+  "Business",
+  "Technology",
+  "Healthcare",
+  "Finance",
+  "Education",
+  "Law",
+  "Science",
+  "Engineering",
+  "Arts",
+  "Social Sciences",
+  "Public Services",
+  "Media & Communication",
+  "Manufacturing",
+  "Retail",
+  "Consulting",
+  "Entrepreneurship",
+  "Research & Development",
 ];
 
 export default function Waitlist() {
@@ -50,7 +71,6 @@ export default function Waitlist() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string>("");
-  const [currentPlaceholder, setCurrentPlaceholder] = useState(jobTitles[0]);
   const [formData, setFormData] = useState<FormData>({
     full_name: "",
     job_title: "",
@@ -60,23 +80,13 @@ export default function Waitlist() {
     motivation: "",
   });
 
-  // Typing animation effect
-  useEffect(() => {
-    let currentIndex = 0;
-    const interval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % jobTitles.length;
-      setCurrentPlaceholder(jobTitles[currentIndex]);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
-    const waitlistUserEndpoint = "http://127.0.0.1:8000/users/waitlist/";
+    const waitlistUserEndpoint =
+      "https://orbitview.pythonanywhere.com/users/waitlist/";
 
     try {
       const response = await fetch(waitlistUserEndpoint, {
@@ -207,15 +217,30 @@ export default function Waitlist() {
                   <Label htmlFor="job_title" className="text-[#fbffff]">
                     Job Title/Role
                   </Label>
-                  <Input
-                    id="job_title"
-                    name="job_title"
-                    placeholder={`e.g. ${currentPlaceholder}`}
-                    value={formData.job_title}
-                    onChange={handleInputChange}
-                    required
-                    className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c] transition-all duration-300"
-                  />
+                  <div className="relative">
+                    <Input
+                      id="job_title"
+                      name="job_title"
+                      value={formData.job_title}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c]"
+                    />
+                    <div className="absolute inset-0 pointer-events-none">
+                      {!formData.job_title && (
+                        <div className="absolute inset-0 flex items-center px-3">
+                          <span className="text-[#3d778c]">e.g. </span>
+                          <ReactTyped
+                            strings={jobTitles}
+                            typeSpeed={40}
+                            backSpeed={50}
+                            loop
+                            className="ml-1 text-[#3d778c]"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -224,15 +249,30 @@ export default function Waitlist() {
                   <Label htmlFor="industry" className="text-[#fbffff]">
                     Industry/Field
                   </Label>
-                  <Input
-                    id="industry"
-                    name="industry"
-                    placeholder="e.g. Technology, Healthcare"
-                    value={formData.industry}
-                    onChange={handleInputChange}
-                    required
-                    className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c]"
-                  />
+                  <div className="relative">
+                    <Input
+                      id="industry"
+                      name="industry"
+                      value={formData.industry}
+                      onChange={handleInputChange}
+                      required
+                      className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c]"
+                    />
+                    <div className="absolute inset-0 pointer-events-none">
+                      {!formData.industry && (
+                        <div className="absolute inset-0 flex items-center px-3">
+                          <span className="text-[#3d778c]">e.g. </span>
+                          <ReactTyped
+                            strings={industries}
+                            typeSpeed={40}
+                            backSpeed={50}
+                            loop
+                            className="ml-1 text-[#3d778c]"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
