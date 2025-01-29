@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,10 +17,40 @@ interface FormData {
   motivation: string;
 }
 
+interface ApiResponse {
+  message: string;
+  data?: any;
+}
+
+const jobTitles = [
+  "Engineer",
+  "Product Manager",
+  "Designer",
+  "Artist",
+  "Marketing Specialist",
+  "Consultant",
+  "Professor",
+  "Teacher",
+  "Advisor",
+  "Manager",
+  "C-Level Executive",
+  "Healthcare Professional",
+  "Education Specialist",
+  "Scientist",
+  "Lawyer",
+  "Legal Expert",
+  "Public Speaker",
+  "Policy Advisor",
+  "Diplomat",
+  "Sports Coach",
+];
+
 export default function Waitlist() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string>("");
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(jobTitles[0]);
   const [formData, setFormData] = useState<FormData>({
     full_name: "",
     job_title: "",
@@ -30,13 +60,23 @@ export default function Waitlist() {
     motivation: "",
   });
 
+  // Typing animation effect
+  useEffect(() => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % jobTitles.length;
+      setCurrentPlaceholder(jobTitles[currentIndex]);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
-    const waitlistUserEndpoint =
-      "https://orbitview.pythonanywhere.com/users/waitlist/";
+    const waitlistUserEndpoint = "http://127.0.0.1:8000/users/waitlist/";
 
     try {
       const response = await fetch(waitlistUserEndpoint, {
@@ -47,21 +87,33 @@ export default function Waitlist() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to join waitlist");
-      }
+      const data: ApiResponse = await response.json();
 
-      setSuccess(true);
-      setFormData({
-        full_name: "",
-        job_title: "",
-        industry: "",
-        years_of_experience: "",
-        email: "",
-        motivation: "",
-      });
+      if (response.ok) {
+        setSuccessMessage(data.message);
+        setSuccess(true);
+        if (response.status === 201) {
+          // Only clear form on new registration
+          setFormData({
+            full_name: "",
+            job_title: "",
+            industry: "",
+            years_of_experience: "",
+            email: "",
+            motivation: "",
+          });
+        }
+      } else {
+        if (typeof data === "object" && data !== null) {
+          // Handle validation errors
+          const errorMessage = Object.values(data).flat().join(" ");
+          setError(errorMessage);
+        } else {
+          setError("An unexpected error occurred. Please try again.");
+        }
+      }
     } catch (err) {
-      setError("Failed to join waitlist. Please try again later.");
+      setError("Failed to connect to the server. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -93,13 +145,8 @@ export default function Waitlist() {
                 <Sparkles className="w-16 h-16 text-[#68a2b3]" />
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-[#fbffff] mb-4">
-              Thank You for Joining!
-            </h2>
-            <p className="text-[#3d778c] text-lg mb-6">
-              We're excited to have you on board. We'll notify you when
-              OrbitView launches.
-            </p>
+            <h2 className="text-2xl font-bold text-[#fbffff] mb-4">Success!</h2>
+            <p className="text-[#3d778c] text-lg mb-6">{successMessage}</p>
             <Button
               onClick={() => setSuccess(false)}
               className="bg-[#3d778c] hover:bg-[#68a2b3] text-[#fbffff]"
@@ -163,11 +210,11 @@ export default function Waitlist() {
                   <Input
                     id="job_title"
                     name="job_title"
-                    placeholder="e.g. Senior Software Engineer"
+                    placeholder={`e.g. ${currentPlaceholder}`}
                     value={formData.job_title}
                     onChange={handleInputChange}
                     required
-                    className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c]"
+                    className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c] transition-all duration-300"
                   />
                 </div>
               </div>
