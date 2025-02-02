@@ -19,7 +19,7 @@ export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      content: "Hello! I'm your AI avatar assistant. How can I help you today?",
+      content: "Hello! I'm your AI agent assistant. How can I help you today?",
       role: "assistant",
       timestamp: Date.now(),
     },
@@ -90,7 +90,7 @@ export default function Chat() {
           <div className="flex items-center gap-3">
             <Brain className="w-8 h-8 text-[#68a2b3]" />
             <h1 className="text-3xl font-bold text-[#fbffff]">
-              Chat with AI Avatar
+              Chat with AI Agent
             </h1>
           </div>
           <div className="h-1 w-32 bg-[#3d778c] mt-4 mb-6 rounded-full" />

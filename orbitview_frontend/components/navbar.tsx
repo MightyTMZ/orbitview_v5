@@ -31,8 +31,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Create Avatar", href: "/create" },
-  { name: "Train Avatar", href: "/train" },
+  { name: "Create Agent", href: "/create" },
+  { name: "Train Agent", href: "/train" },
   { name: "Explore", href: "/explore" },
 ];
 
@@ -119,7 +119,7 @@ export function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem className="text-[#fbffff] focus:bg-[#3d778c]/20">
                     <Bot className="mr-2 h-4 w-4 text-[#68a2b3]" />
-                    <span>My Avatars</span>
+                    <span>My Agents</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="text-[#fbffff] focus:bg-[#3d778c]/20">
                     <LayoutDashboard className="mr-2 h-4 w-4 text-[#68a2b3]" />
@@ -203,7 +203,7 @@ export function Navbar() {
               <div className="space-y-2">
                 {[
                   { icon: User, label: "Profile" },
-                  { icon: Bot, label: "My Avatars" },
+                  { icon: Bot, label: "My Agents" },
                   { icon: LayoutDashboard, label: "Dashboard" },
                   { icon: CreditCard, label: "Billing" },
                   { icon: Settings, label: "Settings" },

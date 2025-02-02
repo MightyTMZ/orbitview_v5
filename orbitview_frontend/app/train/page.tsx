@@ -13,21 +13,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { 
-  Upload, 
-  FileText, 
-  Database, 
-  Bot, 
-  Grid, 
-  List, 
-  Folder, 
-  File, 
-  MoreVertical, 
+import {
+  Upload,
+  FileText,
+  Database,
+  Bot,
+  Grid,
+  List,
+  Folder,
+  File,
+  MoreVertical,
   Trash2,
   Download,
   PenLine,
   Tag,
-  Info
+  Info,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -58,42 +58,44 @@ interface FileItem {
   labels: FileLabel[];
 }
 
-export default function TrainAvatar() {
+export default function TrainAgent() {
   const [files, setFiles] = useState<FileItem[]>([]);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [dragActive, setDragActive] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set());
-  const [currentFolder, setCurrentFolder] = useState<string>('/');
+  const [currentFolder, setCurrentFolder] = useState<string>("/");
   const [editingFile, setEditingFile] = useState<FileItem | null>(null);
-  const [newLabel, setNewLabel] = useState({ text: '', context: '' });
+  const [newLabel, setNewLabel] = useState({ text: "", context: "" });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const newFiles = Array.from(e.target.files).map(file => ({
+      const newFiles = Array.from(e.target.files).map((file) => ({
         id: Math.random().toString(36).substring(7),
         name: file.name,
         size: file.size,
         type: file.type,
         lastModified: new Date(file.lastModified),
         progress: 0,
-        labels: []
+        labels: [],
       }));
-      setFiles(prev => [...prev, ...newFiles]);
+      setFiles((prev) => [...prev, ...newFiles]);
       simulateUpload(newFiles);
     }
   };
 
   const simulateUpload = (newFiles: FileItem[]) => {
-    newFiles.forEach(file => {
+    newFiles.forEach((file) => {
       const interval = setInterval(() => {
-        setFiles(prev => prev.map(f => {
-          if (f.id === file.id) {
-            const progress = ((f.progress || 0) + 10);
-            if (progress >= 100) clearInterval(interval);
-            return { ...f, progress };
-          }
-          return f;
-        }));
+        setFiles((prev) =>
+          prev.map((f) => {
+            if (f.id === file.id) {
+              const progress = (f.progress || 0) + 10;
+              if (progress >= 100) clearInterval(interval);
+              return { ...f, progress };
+            }
+            return f;
+          })
+        );
       }, 500);
     });
   };
@@ -114,22 +116,22 @@ export default function TrainAvatar() {
     setDragActive(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const newFiles = Array.from(e.dataTransfer.files).map(file => ({
+      const newFiles = Array.from(e.dataTransfer.files).map((file) => ({
         id: Math.random().toString(36).substring(7),
         name: file.name,
         size: file.size,
         type: file.type,
         lastModified: new Date(file.lastModified),
         progress: 0,
-        labels: []
+        labels: [],
       }));
-      setFiles(prev => [...prev, ...newFiles]);
+      setFiles((prev) => [...prev, ...newFiles]);
       simulateUpload(newFiles);
     }
   };
 
   const handleFileSelect = (fileId: string) => {
-    setSelectedFiles(prev => {
+    setSelectedFiles((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(fileId)) {
         newSet.delete(fileId);
@@ -141,8 +143,8 @@ export default function TrainAvatar() {
   };
 
   const handleDelete = (fileId: string) => {
-    setFiles(prev => prev.filter(f => f.id !== fileId));
-    setSelectedFiles(prev => {
+    setFiles((prev) => prev.filter((f) => f.id !== fileId));
+    setSelectedFiles((prev) => {
       const newSet = new Set(prev);
       newSet.delete(fileId);
       return newSet;
@@ -151,44 +153,48 @@ export default function TrainAvatar() {
 
   const handleAddLabel = () => {
     if (editingFile && newLabel.text) {
-      setFiles(prev => prev.map(file => {
-        if (file.id === editingFile.id) {
-          return {
-            ...file,
-            labels: [
-              ...file.labels,
-              {
-                id: Math.random().toString(36).substring(7),
-                text: newLabel.text,
-                context: newLabel.context
-              }
-            ]
-          };
-        }
-        return file;
-      }));
-      setNewLabel({ text: '', context: '' });
+      setFiles((prev) =>
+        prev.map((file) => {
+          if (file.id === editingFile.id) {
+            return {
+              ...file,
+              labels: [
+                ...file.labels,
+                {
+                  id: Math.random().toString(36).substring(7),
+                  text: newLabel.text,
+                  context: newLabel.context,
+                },
+              ],
+            };
+          }
+          return file;
+        })
+      );
+      setNewLabel({ text: "", context: "" });
     }
   };
 
   const handleRemoveLabel = (fileId: string, labelId: string) => {
-    setFiles(prev => prev.map(file => {
-      if (file.id === fileId) {
-        return {
-          ...file,
-          labels: file.labels.filter(label => label.id !== labelId)
-        };
-      }
-      return file;
-    }));
+    setFiles((prev) =>
+      prev.map((file) => {
+        if (file.id === fileId) {
+          return {
+            ...file,
+            labels: file.labels.filter((label) => label.id !== labelId),
+          };
+        }
+        return file;
+      })
+    );
   };
 
   const formatFileSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return "0 Bytes";
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   return (
@@ -197,11 +203,14 @@ export default function TrainAvatar() {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <Bot className="w-8 h-8 text-[#68a2b3]" />
-            <h1 className="text-3xl font-bold text-[#fbffff]">Training Materials</h1>
+            <h1 className="text-3xl font-bold text-[#fbffff]">
+              Training Materials
+            </h1>
           </div>
           <div className="h-1 w-32 bg-[#3d778c] mb-6 rounded-full" />
           <p className="text-[#3d778c] text-lg">
-            Manage and organize your training materials to enhance your AI avatar's knowledge.
+            Manage and organize your training materials to enhance your AI
+            agent's knowledge.
           </p>
         </div>
 
@@ -211,9 +220,10 @@ export default function TrainAvatar() {
               {/* File Upload Area */}
               <div
                 className={`border-2 border-dashed rounded-lg p-12 text-center transition-all
-                  ${dragActive 
-                    ? 'border-[#68a2b3] bg-[#3d778c]/10' 
-                    : 'border-[#3d778c] hover:border-[#68a2b3]'
+                  ${
+                    dragActive
+                      ? "border-[#68a2b3] bg-[#3d778c]/10"
+                      : "border-[#3d778c] hover:border-[#68a2b3]"
                   }`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
@@ -228,8 +238,8 @@ export default function TrainAvatar() {
                   className="hidden"
                   id="file-upload"
                 />
-                <Label 
-                  htmlFor="file-upload" 
+                <Label
+                  htmlFor="file-upload"
                   className="cursor-pointer flex flex-col items-center gap-4"
                 >
                   <div className="w-20 h-20 rounded-full bg-[#3d778c]/10 flex items-center justify-center">
@@ -255,21 +265,29 @@ export default function TrainAvatar() {
                       <Button
                         variant="outline"
                         size="icon"
-                        onClick={() => setViewMode('grid')}
-                        className={`border-[#3d778c] ${viewMode === 'grid' ? 'bg-[#3d778c] text-[#fbffff]' : 'text-[#3d778c]'}`}
+                        onClick={() => setViewMode("grid")}
+                        className={`border-[#3d778c] ${
+                          viewMode === "grid"
+                            ? "bg-[#3d778c] text-[#fbffff]"
+                            : "text-[#3d778c]"
+                        }`}
                       >
                         <Grid className="h-4 w-4" />
                       </Button>
                       <Button
                         variant="outline"
                         size="icon"
-                        onClick={() => setViewMode('list')}
-                        className={`border-[#3d778c] ${viewMode === 'list' ? 'bg-[#3d778c] text-[#fbffff]' : 'text-[#3d778c]'}`}
+                        onClick={() => setViewMode("list")}
+                        className={`border-[#3d778c] ${
+                          viewMode === "list"
+                            ? "bg-[#3d778c] text-[#fbffff]"
+                            : "text-[#3d778c]"
+                        }`}
                       >
                         <List className="h-4 w-4" />
                       </Button>
                     </div>
-                    
+
                     {selectedFiles.size > 0 && (
                       <div className="flex items-center gap-2">
                         <span className="text-[#3d778c]">
@@ -279,7 +297,7 @@ export default function TrainAvatar() {
                           variant="outline"
                           size="sm"
                           onClick={() => {
-                            selectedFiles.forEach(id => handleDelete(id));
+                            selectedFiles.forEach((id) => handleDelete(id));
                           }}
                           className="border-[#3d778c] text-[#3d778c] hover:bg-[#3d778c] hover:text-[#fbffff]"
                         >
@@ -291,43 +309,73 @@ export default function TrainAvatar() {
                   </div>
 
                   {/* File Grid/List View */}
-                  <div className={viewMode === 'grid' 
-                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-                    : "space-y-2"
-                  }>
+                  <div
+                    className={
+                      viewMode === "grid"
+                        ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+                        : "space-y-2"
+                    }
+                  >
                     {files.map((file) => (
                       <div
                         key={file.id}
                         className={`group relative ${
-                          viewMode === 'grid'
-                            ? 'p-4 border border-[#3d778c] rounded-lg hover:border-[#68a2b3] transition-all'
-                            : 'p-3 border border-[#3d778c] rounded-lg hover:border-[#68a2b3] transition-all'
-                        } ${selectedFiles.has(file.id) ? 'bg-[#3d778c]/20' : 'bg-transparent'}`}
+                          viewMode === "grid"
+                            ? "p-4 border border-[#3d778c] rounded-lg hover:border-[#68a2b3] transition-all"
+                            : "p-3 border border-[#3d778c] rounded-lg hover:border-[#68a2b3] transition-all"
+                        } ${
+                          selectedFiles.has(file.id)
+                            ? "bg-[#3d778c]/20"
+                            : "bg-transparent"
+                        }`}
                         onClick={() => handleFileSelect(file.id)}
                       >
-                        <div className={`flex ${viewMode === 'grid' ? 'flex-col items-center' : 'items-center'} gap-4`}>
-                          <div className={`${viewMode === 'grid' ? 'text-center' : 'flex-shrink-0'}`}>
+                        <div
+                          className={`flex ${
+                            viewMode === "grid"
+                              ? "flex-col items-center"
+                              : "items-center"
+                          } gap-4`}
+                        >
+                          <div
+                            className={`${
+                              viewMode === "grid"
+                                ? "text-center"
+                                : "flex-shrink-0"
+                            }`}
+                          >
                             <FileText className="w-12 h-12 text-[#68a2b3]" />
                           </div>
-                          <div className={`flex-1 ${viewMode === 'grid' ? 'text-center' : ''}`}>
-                            <p className="text-[#fbffff] font-medium truncate">{file.name}</p>
+                          <div
+                            className={`flex-1 ${
+                              viewMode === "grid" ? "text-center" : ""
+                            }`}
+                          >
+                            <p className="text-[#fbffff] font-medium truncate">
+                              {file.name}
+                            </p>
                             <p className="text-[#3d778c] text-sm">
                               {formatFileSize(file.size)}
                             </p>
                             {/* Labels */}
                             {file.labels.length > 0 && (
                               <div className="flex flex-wrap gap-2 mt-2">
-                                {file.labels.map(label => (
+                                {file.labels.map((label) => (
                                   <TooltipProvider key={label.id}>
                                     <Tooltip>
                                       <TooltipTrigger>
                                         <div className="flex items-center gap-1 bg-[#3d778c]/20 px-2 py-1 rounded-full">
                                           <Tag className="w-3 h-3 text-[#68a2b3]" />
-                                          <span className="text-xs text-[#fbffff]">{label.text}</span>
+                                          <span className="text-xs text-[#fbffff]">
+                                            {label.text}
+                                          </span>
                                           <button
                                             onClick={(e) => {
                                               e.stopPropagation();
-                                              handleRemoveLabel(file.id, label.id);
+                                              handleRemoveLabel(
+                                                file.id,
+                                                label.id
+                                              );
                                             }}
                                             className="ml-1 text-[#3d778c] hover:text-[#68a2b3]"
                                           >
@@ -337,7 +385,9 @@ export default function TrainAvatar() {
                                       </TooltipTrigger>
                                       {label.context && (
                                         <TooltipContent className="max-w-xs bg-[#000d20] border-[#3d778c] p-3">
-                                          <p className="text-[#fbffff] text-sm">{label.context}</p>
+                                          <p className="text-[#fbffff] text-sm">
+                                            {label.context}
+                                          </p>
                                         </TooltipContent>
                                       )}
                                     </Tooltip>
@@ -346,7 +396,7 @@ export default function TrainAvatar() {
                               </div>
                             )}
                           </div>
-                          
+
                           {/* File Actions */}
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -359,36 +409,56 @@ export default function TrainAvatar() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="bg-[#000d20] border-[#3d778c]">
-                              <Dialog onOpenChange={(open) => {
-                                if (open) setEditingFile(file);
-                                else {
-                                  setEditingFile(null);
-                                  setNewLabel({ text: '', context: '' });
-                                }
-                              }}>
+                              <Dialog
+                                onOpenChange={(open) => {
+                                  if (open) setEditingFile(file);
+                                  else {
+                                    setEditingFile(null);
+                                    setNewLabel({ text: "", context: "" });
+                                  }
+                                }}
+                              >
                                 <DialogTrigger asChild>
                                   <DropdownMenuItem className="text-[#fbffff] hover:bg-[#3d778c]/20">
-                                    <Tag className="mr-2 h-4 w-4" /> Manage Labels
+                                    <Tag className="mr-2 h-4 w-4" /> Manage
+                                    Labels
                                   </DropdownMenuItem>
                                 </DialogTrigger>
                                 <DialogContent className="bg-[#000d20] border-[#3d778c]">
                                   <DialogHeader>
-                                    <DialogTitle className="text-[#fbffff]">Manage Labels for {file.name}</DialogTitle>
+                                    <DialogTitle className="text-[#fbffff]">
+                                      Manage Labels for {file.name}
+                                    </DialogTitle>
                                   </DialogHeader>
                                   <div className="space-y-4 mt-4">
                                     <div className="space-y-2">
-                                      <Label htmlFor="label" className="text-[#fbffff]">Label</Label>
+                                      <Label
+                                        htmlFor="label"
+                                        className="text-[#fbffff]"
+                                      >
+                                        Label
+                                      </Label>
                                       <Input
                                         id="label"
                                         value={newLabel.text}
-                                        onChange={(e) => setNewLabel(prev => ({ ...prev, text: e.target.value }))}
+                                        onChange={(e) =>
+                                          setNewLabel((prev) => ({
+                                            ...prev,
+                                            text: e.target.value,
+                                          }))
+                                        }
                                         placeholder="Enter a label (e.g., 'Technical Documentation')"
                                         className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c]"
                                       />
                                     </div>
                                     <div className="space-y-2">
                                       <div className="flex items-center gap-2">
-                                        <Label htmlFor="context" className="text-[#fbffff]">Context</Label>
+                                        <Label
+                                          htmlFor="context"
+                                          className="text-[#fbffff]"
+                                        >
+                                          Context
+                                        </Label>
                                         <TooltipProvider>
                                           <Tooltip>
                                             <TooltipTrigger>
@@ -396,7 +466,9 @@ export default function TrainAvatar() {
                                             </TooltipTrigger>
                                             <TooltipContent className="bg-[#000d20] border-[#3d778c] p-3">
                                               <p className="text-[#fbffff] text-sm">
-                                                Describe when and how your AI avatar should use this information.
+                                                Describe when and how your AI
+                                                avatar should use this
+                                                information.
                                               </p>
                                             </TooltipContent>
                                           </Tooltip>
@@ -405,7 +477,12 @@ export default function TrainAvatar() {
                                       <Textarea
                                         id="context"
                                         value={newLabel.context}
-                                        onChange={(e) => setNewLabel(prev => ({ ...prev, context: e.target.value }))}
+                                        onChange={(e) =>
+                                          setNewLabel((prev) => ({
+                                            ...prev,
+                                            context: e.target.value,
+                                          }))
+                                        }
                                         placeholder="Describe when this information should be used (e.g., 'Use when explaining system architecture')"
                                         className="bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c]"
                                       />
@@ -420,23 +497,34 @@ export default function TrainAvatar() {
                                     {/* Existing Labels */}
                                     {file.labels.length > 0 && (
                                       <div className="mt-4">
-                                        <h4 className="text-[#fbffff] font-medium mb-2">Existing Labels</h4>
+                                        <h4 className="text-[#fbffff] font-medium mb-2">
+                                          Existing Labels
+                                        </h4>
                                         <div className="space-y-2">
-                                          {file.labels.map(label => (
+                                          {file.labels.map((label) => (
                                             <div
                                               key={label.id}
                                               className="flex items-center justify-between p-2 border border-[#3d778c] rounded-lg"
                                             >
                                               <div>
-                                                <p className="text-[#fbffff]">{label.text}</p>
+                                                <p className="text-[#fbffff]">
+                                                  {label.text}
+                                                </p>
                                                 {label.context && (
-                                                  <p className="text-[#3d778c] text-sm">{label.context}</p>
+                                                  <p className="text-[#3d778c] text-sm">
+                                                    {label.context}
+                                                  </p>
                                                 )}
                                               </div>
                                               <Button
                                                 variant="ghost"
                                                 size="icon"
-                                                onClick={() => handleRemoveLabel(file.id, label.id)}
+                                                onClick={() =>
+                                                  handleRemoveLabel(
+                                                    file.id,
+                                                    label.id
+                                                  )
+                                                }
                                                 className="text-[#3d778c] hover:text-[#68a2b3]"
                                               >
                                                 <Trash2 className="h-4 w-4" />
@@ -455,7 +543,7 @@ export default function TrainAvatar() {
                               <DropdownMenuItem className="text-[#fbffff] hover:bg-[#3d778c]/20">
                                 <PenLine className="mr-2 h-4 w-4" /> Rename
                               </DropdownMenuItem>
-                              <DropdownMenuItem 
+                              <DropdownMenuItem
                                 className="text-red-500 hover:bg-[#3d778c]/20"
                                 onClick={() => handleDelete(file.id)}
                               >
@@ -466,14 +554,15 @@ export default function TrainAvatar() {
                         </div>
 
                         {/* Upload Progress */}
-                        {typeof file.progress === 'number' && file.progress < 100 && (
-                          <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#3d778c]/20">
-                            <div
-                              className="h-full bg-[#68a2b3] transition-all duration-300"
-                              style={{ width: `${file.progress}%` }}
-                            />
-                          </div>
-                        )}
+                        {typeof file.progress === "number" &&
+                          file.progress < 100 && (
+                            <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#3d778c]/20">
+                              <div
+                                className="h-full bg-[#68a2b3] transition-all duration-300"
+                                style={{ width: `${file.progress}%` }}
+                              />
+                            </div>
+                          )}
                       </div>
                     ))}
                   </div>

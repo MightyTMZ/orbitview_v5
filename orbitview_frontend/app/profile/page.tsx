@@ -215,7 +215,7 @@ export default function Profile() {
               className="data-[state=active]:bg-[#3d778c] data-[state=active]:text-[#fbffff]"
             >
               <Bot className="w-4 h-4 mr-2" />
-              AI Avatars
+              AI Agents
             </TabsTrigger>
           </TabsList>
 

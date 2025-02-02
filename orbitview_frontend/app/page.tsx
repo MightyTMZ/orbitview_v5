@@ -58,7 +58,7 @@ export default function Home() {
           <div className="h-1 w-32 bg-[#3d778c] mx-auto mb-6 rounded-full glowing" />
           <p className="mt-6 text-xl text-[#3d778c] leading-relaxed">
             Share your knowledge 24/7 without sacrificing your time. Create an
-            AI avatar that represents your expertise and helps others learn from
+            AI agent that represents your expertise and helps others learn from
             your experience.
           </p>
           <div className="mt-10 flex justify-center gap-4">
@@ -75,7 +75,7 @@ export default function Home() {
               className="border-[#3d778c] text-[#3d778c] hover:bg-[#3d778c] hover:text-[#fbffff] transition-all duration-300 transform hover:scale-105"
               asChild
             >
-              <Link href="/explore">Explore Avatars</Link>
+              <Link href="/explore">Explore Agents</Link>
             </Button>
           </div>
         </div>
@@ -89,13 +89,13 @@ export default function Home() {
               icon: Brain,
               title: "Knowledge Transfer",
               description:
-                "Share your expertise through an AI avatar that learns from your experience and knowledge.",
+                "Share your expertise through an agent that learns from your experience and knowledge.",
             },
             {
               icon: MessageSquare,
               title: "24/7 Availability",
               description:
-                "Your AI avatar is always available to answer questions and share insights.",
+                "Your agent is always available to answer questions and share insights.",
             },
             {
               icon: Zap,
@@ -128,7 +128,7 @@ export default function Home() {
       <div className="container mx-auto px-4 py-24 relative">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-[#fbffff] mb-4">
-            Create Your AI Avatar in Minutes
+            Create Your AI Agent in Minutes
           </h2>
           <div className="h-1 w-32 bg-[#3d778c] mx-auto mb-6 rounded-full glowing" />
           <p className="text-xl text-[#3d778c]">
@@ -149,17 +149,17 @@ export default function Home() {
                   </div>
                   <div className="flex-grow">
                     <h3 className="text-xl font-semibold text-[#fbffff] mb-2">
-                      1. Design Your Avatar
+                      1. Design Your Agent
                     </h3>
                     <p className="text-[#3d778c]">
-                      Define your avatar's expertise areas, personality, and
+                      Define your agent's expertise areas, personality, and
                       communication style to create a unique digital
                       representation of your knowledge.
                     </p>
                   </div>
                   <Image
                     src={createAvatarImg}
-                    alt="Avatar Design"
+                    alt="Agent Design"
                     width={200}
                     height={150}
                     className="rounded-lg border border-[#3d778c] group-hover:border-[#68a2b3] transition-all"
@@ -186,7 +186,7 @@ export default function Home() {
                     </h3>
                     <p className="text-[#3d778c]">
                       Share your expertise through documents, presentations, and
-                      other materials to build your avatar's knowledge base.
+                      other materials to build your agent's knowledge base.
                     </p>
                   </div>
                   <Image
@@ -223,7 +223,7 @@ export default function Home() {
                   </div>
                   <Image
                     src="https://images.unsplash.com/photo-1677442136019-21780ecad995"
-                    alt="Avatar Training"
+                    alt="Agent Training"
                     width={200}
                     height={150}
                     className="rounded-lg border border-[#3d778c] group-hover:border-[#68a2b3] transition-all"
@@ -249,13 +249,13 @@ export default function Home() {
                       4. Launch & Share
                     </h3>
                     <p className="text-[#3d778c]">
-                      Deploy your AI avatar and start sharing your knowledge
-                      with the world while earning passive income.
+                      Deploy your AI agent and start sharing your knowledge with
+                      the world while earning passive income.
                     </p>
                   </div>
                   <Image
                     src={launchAndCreate}
-                    alt="Avatar Launch"
+                    alt="Agent Launch"
                     width={200}
                     height={150}
                     className="rounded-lg border border-[#3d778c] group-hover:border-[#68a2b3] transition-all"
@@ -272,7 +272,7 @@ export default function Home() {
             className="bg-[#3d778c] hover:bg-[#68a2b3] transition-all duration-300 transform hover:scale-105"
             asChild
           >
-            <Link href="/create">Start Creating Your Avatar</Link>
+            <Link href="/create">Start Creating Your Agent</Link>
           </Button>
         </div>
       </div>

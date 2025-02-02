@@ -10,16 +10,16 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Brain, BookOpen, DollarSign, Sparkles } from "lucide-react";
 
-export default function CreateAvatar() {
+export default function CreateAgent() {
   const [step, setStep] = useState(1);
 
   return (
     <main className="min-h-screen bg-[#000d20] py-12">
       <div className="container max-w-4xl mx-auto px-4">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2 text-[#fbffff]">Create Your AI Avatar</h1>
+          <h1 className="text-3xl font-bold mb-2 text-[#fbffff]">Create Your AI Agent</h1>
           <p className="text-[#3d778c]">
-            Follow these steps to create your personalized AI avatar that will represent your expertise.
+            Follow these steps to create your personalized AI agent that will represent your expertise.
           </p>
         </div>
 
@@ -166,10 +166,10 @@ export default function CreateAvatar() {
                   </div>
 
                   <div>
-                    <Label htmlFor="tone" className="text-[#fbffff]">Avatar Tone</Label>
+                    <Label htmlFor="tone" className="text-[#fbffff]">Agent Tone</Label>
                     <Textarea 
                       id="tone" 
-                      placeholder="Describe how you want your AI avatar to communicate..."
+                      placeholder="Describe how you want your AI agent to communicate..."
                       className="min-h-[100px] bg-transparent border-[#3d778c] text-[#fbffff] placeholder:text-[#3d778c]"
                       required 
                     />
@@ -246,7 +246,7 @@ export default function CreateAvatar() {
                     Back
                   </Button>
                   <Button type="submit" className="bg-[#3d778c] hover:bg-[#68a2b3] text-[#fbffff]">
-                    Create Avatar
+                    Create Agent
                   </Button>
                 </div>
               </form>
