@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -56,7 +58,7 @@ interface FileItem {
   progress?: number;
   labels: FileLabel[];
 }
-
+/* 
 export const metadata: Metadata = {
   title: "Train Your AI Agent | OrbitView",
   description:
@@ -69,6 +71,7 @@ export const metadata: Metadata = {
     "content management",
   ],
 };
+*/
 
 export default function TrainAgent() {
   const [files, setFiles] = useState<FileItem[]>([]);

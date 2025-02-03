@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Bot, Send, User, Sparkles, Brain } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
 interface Message {
   id: string;
@@ -15,7 +15,7 @@ interface Message {
   role: "user" | "assistant";
   timestamp: number;
 }
-
+/* 
 export const metadata: Metadata = {
   title: "Chat with AI Agent | OrbitView",
   description:
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     "AI mentor",
   ],
 };
+*/
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
