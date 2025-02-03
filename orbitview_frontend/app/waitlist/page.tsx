@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Orbit, Sparkles } from "lucide-react";
 import { ReactTyped } from "react-typed";
+import WaitlistNumber from "@/components/waitlist-number";
 
 interface FormData {
   full_name: string;
@@ -182,6 +183,7 @@ export default function Waitlist() {
             Join the Waitlist
           </h1>
           <div className="h-1 w-24 bg-[#3d778c] mx-auto mb-6 rounded-full glowing" />
+          <WaitlistNumber />
           <p className="text-[#3d778c] text-lg">
             Be among the first to create your AI avatar and start sharing your
             knowledge with the world.

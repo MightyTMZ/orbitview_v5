@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
+from django.http import HttpResponse
 from .serializers import WaitlistUserSerializer
 from .throttles import WaitlistUserThrottle
 from .models import WaitlistUser
@@ -33,3 +35,9 @@ class WaitlistUserCreateAPIView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+@api_view(['GET'])
+def waitlist_number(request):
+    waitlist_user_count = WaitlistUser.objects.count() # Corrected method call
+    return Response({"waitlist_count": waitlist_user_count})
