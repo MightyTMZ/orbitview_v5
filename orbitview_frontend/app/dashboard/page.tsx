@@ -73,7 +73,7 @@ export default function Dashboard() {
             <div className="flex items-center gap-3">
               <Brain className="w-8 h-8 text-[#68a2b3]" />
               <h1 className="text-3xl font-bold text-[#fbffff]">
-                Avatar Dashboard
+                Agent Dashboard
               </h1>
             </div>
             <div className="flex items-center gap-2">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import {
   Orbit,
   Menu,
@@ -31,6 +32,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "Feed", href: "/feed" },
   { name: "Create Agent", href: "/create" },
   { name: "Train Agent", href: "/train" },
   { name: "Explore", href: "/explore" },
@@ -38,7 +40,16 @@ const navigation = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleProfile = () => {
+    router.push("/profile");
+  };
+
+  const handleDashboard = () => {
+    router.push("/dashboard");
+  };
 
   return (
     <nav className="fixed w-full z-50 bg-[#000d20]/80 backdrop-blur-lg border-b border-[#3d778c]">
@@ -112,7 +123,10 @@ export function Navbar() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-[#3d778c]/20" />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem className="text-[#fbffff] focus:bg-[#3d778c]/20">
+                  <DropdownMenuItem
+                    className="text-[#fbffff] focus:bg-[#3d778c]/20"
+                    onClick={handleProfile}
+                  >
                     <User className="mr-2 h-4 w-4 text-[#68a2b3]" />
                     <span>Profile</span>
                     <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
@@ -121,7 +135,10 @@ export function Navbar() {
                     <Bot className="mr-2 h-4 w-4 text-[#68a2b3]" />
                     <span>My Agents</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="text-[#fbffff] focus:bg-[#3d778c]/20">
+                  <DropdownMenuItem
+                    className="text-[#fbffff] focus:bg-[#3d778c]/20"
+                    onClick={handleDashboard}
+                  >
                     <LayoutDashboard className="mr-2 h-4 w-4 text-[#68a2b3]" />
                     <span>Dashboard</span>
                     <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
