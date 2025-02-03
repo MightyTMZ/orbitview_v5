@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 const WaitlistNumber = () => {
-  const [waitlistCount, setWaitlistCount] = useState(null);
+  const [waitlistCount, setWaitlistCount] = useState("100+");
 
   useEffect(() => {
     const fetchWaitlistCount = async () => {
@@ -26,7 +26,7 @@ const WaitlistNumber = () => {
       <span>
         Are you ready to join our amazing community of{" "}
         <span style={{ color: "gold", fontWeight: "bold" }}>
-          {waitlistCount !== null ? waitlistCount : "100+"}
+          {waitlistCount.toLocaleString()}
         </span>{" "}
         waitlist members?
       </span>
