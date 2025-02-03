@@ -185,8 +185,12 @@ export default function Waitlist() {
           <div className="h-1 w-24 bg-[#3d778c] mx-auto mb-6 rounded-full glowing" />
           <WaitlistNumber />
           <p className="text-[#3d778c] text-lg">
-            Be among the first to create your AI avatar and start sharing your
-            knowledge with the world.
+            Be among the first to create your AI agent, start sharing your
+            knowledge with the world, and earn passive income.
+          </p>
+          <p className="text-[#3d778c] text-lg">
+            Is OrbitView right for me? Find out more
+            <a href="/additional-info">here</a>
           </p>
         </div>
 
@@ -316,7 +320,7 @@ export default function Waitlist() {
 
               <div className="space-y-3">
                 <Label className="text-[#fbffff]">
-                  Primary Motivation for Creating an AI Avatar
+                  Primary Motivation for Creating an AI Agent
                 </Label>
                 <RadioGroup
                   value={formData.motivation}

@@ -17,6 +17,13 @@ import { FaGoogle, FaGithub, FaMicrosoft } from "react-icons/fa";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+/*import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign In | OrbitView",
+  description:
+    "Sign in to your OrbitView account to manage your AI agent and share your expertise.",
+}; */
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);

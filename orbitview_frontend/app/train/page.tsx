@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -41,6 +39,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Metadata } from "next";
 
 interface FileLabel {
   id: string;
@@ -57,6 +56,19 @@ interface FileItem {
   progress?: number;
   labels: FileLabel[];
 }
+
+export const metadata: Metadata = {
+  title: "Train Your AI Agent | OrbitView",
+  description:
+    "Upload and manage training materials to enhance your AI agent's knowledge and expertise.",
+  keywords: [
+    "AI training",
+    "knowledge upload",
+    "agent training",
+    "expertise sharing",
+    "content management",
+  ],
+};
 
 export default function TrainAgent() {
   const [files, setFiles] = useState<FileItem[]>([]);
@@ -467,7 +479,7 @@ export default function TrainAgent() {
                                             <TooltipContent className="bg-[#000d20] border-[#3d778c] p-3">
                                               <p className="text-[#fbffff] text-sm">
                                                 Describe when and how your AI
-                                                avatar should use this
+                                                agent should use this
                                                 information.
                                               </p>
                                             </TooltipContent>

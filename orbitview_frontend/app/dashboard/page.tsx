@@ -31,6 +31,20 @@ import {
   Pie,
   Cell,
 } from "recharts";
+/*import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard | OrbitView",
+  description:
+    "Monitor your AI agent performance, track engagement, and manage your knowledge sharing platform.",
+  keywords: [
+    "AI dashboard",
+    "performance metrics",
+    "engagement analytics",
+    "content management",
+    "user insights",
+  ],
+}; */
 
 // Sample data - replace with real data from your backend
 const interactionsData = [

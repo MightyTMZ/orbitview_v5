@@ -16,6 +16,13 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+/*import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create Account | OrbitView",
+  description:
+    "Join OrbitView and start creating your AI agent to share your expertise with the world.",
+};*/
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);

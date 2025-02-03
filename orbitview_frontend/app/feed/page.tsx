@@ -27,6 +27,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+// import { Metadata } from "next";
 
 interface Post {
   id: string;
@@ -47,6 +48,25 @@ interface Post {
   image?: string;
   link?: string;
 }
+
+/*export const metadata: Metadata = {
+  title: "Content Feed | OrbitView",
+  description:
+    "Interact with content, insights, and updates on OrbitView today!",
+  keywords: [
+    "agentic social media",
+    "social media",
+    "media sharing",
+    "content learning",
+    "next generation",
+    "agentic future",
+    "knowledge feed",
+    "expert content",
+    "learning feed",
+    "AI insights",
+    "educational content",
+  ],
+}; */
 
 const samplePosts: Post[] = [
   {

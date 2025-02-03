@@ -30,6 +30,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { Metadata } from "next";
 
 interface ContentItem {
   id: string;
@@ -53,6 +54,19 @@ interface AvatarInfo {
   status: "online" | "offline";
   lastActive?: string;
 }
+
+export const metadata: Metadata = {
+  title: "Profile | OrbitView",
+  description:
+    "Manage your expert profile, AI agents, and content. Track your impact and engagement with learners.",
+  keywords: [
+    "expert profile",
+    "AI agent management",
+    "content creator",
+    "knowledge sharing",
+    "personal brand",
+  ],
+};
 
 const sampleContent: ContentItem[] = [
   {
@@ -156,6 +170,8 @@ export default function Profile() {
                   </h1>
                   <p className="text-[#3d778c] text-lg mb-4">
                     Math and CS Teacher @ Earl Haig Secondary School
+                    <br />
+                    Disclaimer: I am a sample profile{" "}
                   </p>
                 </div>
               </div>
