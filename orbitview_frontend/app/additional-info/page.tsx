@@ -110,15 +110,15 @@ export default function AdditionalInfo() {
           <h1 className="text-4xl font-bold text-[#fbffff] mb-4">
             Is OrbitView Right for You?
           </h1>
-          <div className="h-1 w-32 bg-[#3d778c] mb-6 rounded-full" />
-          <p className="text-xl text-[#3d778c] max-w-3xl">
+          <div className="h-1 w-32 bg-[#97c9db] mb-6 rounded-full" />
+          <p className="text-xl text-[#97c9db] max-w-3xl">
             Discover if OrbitView is the right platform to share your expertise
             and create impact at scale
           </p>
         </div>
         <Button
           size="lg"
-          className="bg-[#3d778c] hover:bg-[#68a2b3] text-[#fbffff]"
+          className="bg-[#25738f] hover:bg-[#68a2b3] text-[#fbffff]"
           asChild
         >
           <Link href="/waitlist">
@@ -139,15 +139,15 @@ export default function AdditionalInfo() {
             {benefits.map((benefit, index) => (
               <Card
                 key={index}
-                className="p-6 bg-[#000d20] border-[#3d778c] hover:border-[#68a2b3] transition-all duration-300"
+                className="p-6 bg-[#000d20] border-[#97c9db] hover:border-[#68a2b3] transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-[#3d778c]/10 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-[#97c9db]/10 flex items-center justify-center mb-4">
                   <benefit.icon className="w-6 h-6 text-[#68a2b3]" />
                 </div>
                 <h3 className="text-lg font-bold text-[#fbffff] mb-2">
                   {benefit.title}
                 </h3>
-                <p className="text-[#3d778c]">{benefit.description}</p>
+                <p className="text-[#97c9db]">{benefit.description}</p>
               </Card>
             ))}
           </div>
@@ -162,10 +162,10 @@ export default function AdditionalInfo() {
             {requirements.map((req, index) => (
               <Card
                 key={index}
-                className="p-6 bg-[#000d20] border-[#3d778c] hover:border-[#68a2b3] transition-all duration-300"
+                className="p-6 bg-[#000d20] border-[#97c9db] hover:border-[#68a2b3] transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#3d778c]/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-[#97c9db]/10 flex items-center justify-center flex-shrink-0">
                     <req.icon className="w-6 h-6 text-[#68a2b3]" />
                   </div>
                   <div>
@@ -176,10 +176,10 @@ export default function AdditionalInfo() {
                       {req.essential ? (
                         <CheckCircle2 className="w-5 h-5 text-green-500" />
                       ) : (
-                        <XCircle className="w-5 h-5 text-[#3d778c]" />
+                        <XCircle className="w-5 h-5 text-[#97c9db]" />
                       )}
                     </div>
-                    <p className="text-[#3d778c]">{req.description}</p>
+                    <p className="text-[#97c9db]">{req.description}</p>
                   </div>
                 </div>
               </Card>
@@ -189,18 +189,18 @@ export default function AdditionalInfo() {
 
         {/* CTA Section */}
         <section className="text-center">
-          <Card className="p-12 bg-[#000d20] border-[#3d778c] max-w-3xl mx-auto">
+          <Card className="p-12 bg-[#000d20] border-[#97c9db] max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-[#fbffff] mb-4">
               Ready to Share Your Knowledge?
             </h2>
-            <p className="text-[#3d778c] mb-8">
+            <p className="text-[#97c9db] mb-8">
               Join the waitlist today and be among the first to create your AI
               avatar
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-[#3d778c] hover:bg-[#68a2b3] text-[#fbffff]"
+                className="bg-[#97c9db] hover:bg-[#68a2b3] text-[#fbffff]"
                 asChild
               >
                 <Link href="/waitlist">
@@ -211,7 +211,7 @@ export default function AdditionalInfo() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-[#3d778c] text-[#3d778c] hover:bg-[#3d778c] hover:text-[#fbffff]"
+                className="border-[#97c9db] text-[#97c9db] hover:bg-[#97c9db] hover:text-[#fbffff]"
                 asChild
               >
                 <Link href="/">
