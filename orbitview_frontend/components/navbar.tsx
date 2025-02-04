@@ -32,6 +32,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "Who is OrbitView for?", href: "/additional-info" },
   { name: "Feed", href: "/feed" },
   { name: "Create Agent", href: "/create" },
   { name: "Train Agent", href: "/train" },
@@ -219,12 +220,28 @@ export function Navbar() {
               </div>
               <div className="space-y-2">
                 {[
-                  { icon: User, label: "Profile" },
-                  { icon: Bot, label: "My Agents" },
-                  { icon: LayoutDashboard, label: "Dashboard" },
-                  { icon: CreditCard, label: "Billing" },
-                  { icon: Settings, label: "Settings" },
-                  { icon: HelpCircle, label: "Support" },
+                  { icon: User, label: "Profile", reference: "/profile" },
+                  { icon: Bot, label: "My Agents", reference: "/profile" },
+                  {
+                    icon: LayoutDashboard,
+                    label: "Dashboard",
+                    reference: "/dashboard",
+                  },
+                  {
+                    icon: CreditCard,
+                    label: "Billing",
+                    reference: "/dashboard",
+                  },
+                  {
+                    icon: Settings,
+                    label: "Settings",
+                    reference: "/dashboard",
+                  },
+                  {
+                    icon: HelpCircle,
+                    label: "Support",
+                    reference: "/additional-info",
+                  },
                 ].map((item) => (
                   <Button
                     key={item.label}
@@ -232,7 +249,7 @@ export function Navbar() {
                     className="w-full justify-start text-[#fbffff] hover:bg-[#3d778c]/20"
                   >
                     <item.icon className="mr-2 h-4 w-4 text-[#68a2b3]" />
-                    {item.label}
+                    <Link href={item.reference}>{item.label}</Link>
                   </Button>
                 ))}
                 <Button

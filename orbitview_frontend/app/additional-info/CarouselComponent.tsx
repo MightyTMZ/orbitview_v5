@@ -66,7 +66,7 @@ const CarouselComponent = () => {
   return (
     <section className="mb-20">
       <h2 className="text-2xl font-bold text-[#fbffff] mb-8 text-center">
-        Who Should Use OrbitView?
+        Who is best suited for OrbitView?
       </h2>
       <Carousel
         opts={{

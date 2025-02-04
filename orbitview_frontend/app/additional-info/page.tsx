@@ -104,7 +104,7 @@ export default function AdditionalInfo() {
 
   return (
     <main className="min-h-screen bg-[#000d20] py-12">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-12">
         {/* Header */}
         <div className="mb-16">
           <h1 className="text-4xl font-bold text-[#fbffff] mb-4">
@@ -116,6 +116,18 @@ export default function AdditionalInfo() {
             and create impact at scale
           </p>
         </div>
+        <Button
+          size="lg"
+          className="bg-[#3d778c] hover:bg-[#68a2b3] text-[#fbffff]"
+          asChild
+        >
+          <Link href="/waitlist">
+            <Sparkles className="w-5 h-5 mr-2" />
+            Join Waitlist
+          </Link>
+        </Button>
+        <br />
+        <br />
         <CarouselComponent />
 
         {/* Benefits Section */}
