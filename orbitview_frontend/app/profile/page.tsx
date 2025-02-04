@@ -30,7 +30,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
 interface ContentItem {
   id: string;
@@ -54,7 +54,7 @@ interface AvatarInfo {
   status: "online" | "offline";
   lastActive?: string;
 }
-
+/*
 export const metadata: Metadata = {
   title: "Profile | OrbitView",
   description:
@@ -67,6 +67,7 @@ export const metadata: Metadata = {
     "personal brand",
   ],
 };
+*/
 
 const sampleContent: ContentItem[] = [
   {
