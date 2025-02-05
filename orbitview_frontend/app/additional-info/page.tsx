@@ -153,7 +153,7 @@ export default function AdditionalInfo() {
           </div>
         </section>
 
-        {/* Requirements Section */}
+        {/* Requirements Section
         <section className="mb-20">
           <h2 className="text-2xl font-bold text-[#fbffff] mb-8 text-center">
             Requirements
@@ -185,7 +185,7 @@ export default function AdditionalInfo() {
               </Card>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* CTA Section */}
         <section className="text-center">
