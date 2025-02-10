@@ -13,10 +13,10 @@ import {
   ArrowRight,
   Lock,
   Sparkles,
+  MessageSquare,
 } from "lucide-react";
 import Link from "next/link";
 
-// Move metadata to a separate layout.tsx file
 const integrations = [
   {
     name: "YouTube",
@@ -49,6 +49,17 @@ const integrations = [
       "Leverage newsletter expertise",
       "Capture topic deep-dives",
       "Import subscriber interactions",
+    ],
+  },
+  {
+    name: "Reddit",
+    description:
+      "Import your Reddit posts, comments, and discussions to train your AI with your problem-solving approach and community interactions.",
+    icon: MessageSquare,
+    benefits: [
+      "Learn from your explanations",
+      "Capture discussion style",
+      "Import technical solutions",
     ],
   },
   {

@@ -1,0 +1,274 @@
+{
+    "platforms": {
+      "developer": {
+        "title": "Developer Platforms",
+        "integrations": [
+          {
+            "name": "GitHub",
+            "description": "Train your AI with your coding style and documentation from your public repositories.",
+            "icon": "Github",
+            "benefits": [
+              "Learn your coding style",
+              "Import documentation",
+              "Understand your patterns"
+            ]
+          },
+          {
+            "name": "Stack Overflow",
+            "description": "Import your answers and explanations to train your AI with your problem-solving approach.",
+            "icon": "MessageSquare",
+            "benefits": [
+              "Capture problem-solving methods",
+              "Import technical explanations",
+              "Learn from Q&A patterns"
+            ]
+          },
+          {
+            "name": "Dev.to",
+            "description": "Transform your technical blog posts into training data for your AI avatar.",
+            "icon": "FileText",
+            "benefits": [
+              "Import technical articles",
+              "Preserve writing style",
+              "Learn from discussions"
+            ]
+          },
+          {
+            "name": "HashNode",
+            "description": "Use your developer blog content to enhance your AI's knowledge base.",
+            "icon": "FileText",
+            "benefits": [
+              "Import technical content",
+              "Capture writing style",
+              "Learn from community feedback"
+            ]
+          },
+          {
+            "name": "GitLab",
+            "description": "Import repository content and documentation to train your AI.",
+            "icon": "Github",
+            "benefits": [
+              "Learn from code reviews",
+              "Import documentation",
+              "Understand workflows"
+            ]
+          }
+        ]
+      },
+      "content": {
+        "title": "Content Platforms",
+        "integrations": [
+          {
+            "name": "YouTube",
+            "description": "Import your video content and transcripts to train your AI with your actual teaching style and explanations.",
+            "icon": "Youtube",
+            "benefits": [
+              "Convert video transcripts into training data",
+              "Extract key concepts from your explanations",
+              "Maintain your teaching style"
+            ]
+          },
+          {
+            "name": "Medium",
+            "description": "Transform your articles into knowledge that your AI can use to provide detailed, well-structured explanations.",
+            "icon": "FileText",
+            "benefits": [
+              "Preserve your writing style",
+              "Import technical articles",
+              "Maintain consistent tone"
+            ]
+          },
+          {
+            "name": "Substack",
+            "description": "Use your newsletter content to train your AI in delivering expert insights in your unique voice.",
+            "icon": "FileText",
+            "benefits": [
+              "Leverage newsletter expertise",
+              "Capture topic deep-dives",
+              "Import subscriber interactions"
+            ]
+          },
+          {
+            "name": "WordPress",
+            "description": "Import your blog content and articles to train your AI avatar.",
+            "icon": "FileText",
+            "benefits": [
+              "Import blog posts",
+              "Preserve formatting",
+              "Capture reader interactions"
+            ]
+          },
+          {
+            "name": "Ghost",
+            "description": "Use your professional blog content to enhance your AI's knowledge base.",
+            "icon": "FileText",
+            "benefits": [
+              "Import professional content",
+              "Maintain formatting",
+              "Learn from reader engagement"
+            ]
+          }
+        ]
+      },
+      "social": {
+        "title": "Social Platforms",
+        "integrations": [
+          {
+            "name": "LinkedIn",
+            "description": "Turn your professional insights and posts into training data for more business-oriented responses.",
+            "icon": "Linkedin",
+            "benefits": [
+              "Import professional insights",
+              "Capture industry expertise",
+              "Learn from post discussions"
+            ]
+          },
+          {
+            "name": "Reddit",
+            "description": "Import your Reddit posts, comments, and discussions to train your AI with your problem-solving approach and community interactions.",
+            "icon": "MessageSquare",
+            "benefits": [
+              "Learn from your explanations",
+              "Capture discussion style",
+              "Import technical solutions"
+            ]
+          },
+          {
+            "name": "Twitter/X",
+            "description": "Import your threads and technical discussions to train your AI.",
+            "icon": "MessageSquare",
+            "benefits": [
+              "Learn from threads",
+              "Capture concise explanations",
+              "Import technical discussions"
+            ]
+          },
+          {
+            "name": "Instagram",
+            "description": "Import your educational posts and carousel content to enhance your AI's knowledge base.",
+            "icon": "Instagram",
+            "benefits": [
+              "Extract knowledge from carousels",
+              "Convert visual explanations",
+              "Capture engagement patterns"
+            ]
+          }
+        ]
+      },
+      "learning": {
+        "title": "Learning Platforms",
+        "integrations": [
+          {
+            "name": "Udemy",
+            "description": "Import your course content and materials to train your AI avatar.",
+            "icon": "BookOpen",
+            "benefits": [
+              "Import course materials",
+              "Learn teaching methods",
+              "Capture student interactions"
+            ]
+          },
+          {
+            "name": "Coursera",
+            "description": "Use your course materials and assignments to enhance your AI's knowledge.",
+            "icon": "BookOpen",
+            "benefits": [
+              "Import course content",
+              "Learn assessment patterns",
+              "Capture teaching style"
+            ]
+          },
+          {
+            "name": "Teachable",
+            "description": "Import your online course content to train your AI avatar.",
+            "icon": "BookOpen",
+            "benefits": [
+              "Import course materials",
+              "Learn teaching methods",
+              "Capture student feedback"
+            ]
+          }
+        ]
+      },
+      "documentation": {
+        "title": "Documentation & Notes",
+        "integrations": [
+          {
+            "name": "Notion",
+            "description": "Import your knowledge base and documentation to train your AI.",
+            "icon": "FileText",
+            "benefits": [
+              "Import structured content",
+              "Preserve organization",
+              "Maintain relationships"
+            ]
+          },
+          {
+            "name": "Confluence",
+            "description": "Use your technical documentation and wikis to train your AI avatar.",
+            "icon": "FileText",
+            "benefits": [
+              "Import technical docs",
+              "Preserve structure",
+              "Maintain versions"
+            ]
+          },
+          {
+            "name": "OneDrive",
+            "description": "Connect your OneDrive to easily import documents, presentations, and training materials.",
+            "icon": "Cloud",
+            "benefits": [
+              "Bulk import documents",
+              "Process presentations",
+              "Analyze spreadsheets"
+            ]
+          },
+          {
+            "name": "Google Drive",
+            "description": "Seamlessly import your Google Drive content to train your AI with your documented knowledge.",
+            "icon": "Cloud",
+            "benefits": [
+              "Import Google Docs",
+              "Process Slides",
+              "Analyze Sheets"
+            ]
+          }
+        ]
+      },
+      "video": {
+        "title": "Video Platforms",
+        "integrations": [
+          {
+            "name": "Vimeo",
+            "description": "Import your professional video content to train your AI avatar.",
+            "icon": "Video",
+            "benefits": [
+              "Process video content",
+              "Extract transcripts",
+              "Learn presentation style"
+            ]
+          },
+          {
+            "name": "Loom",
+            "description": "Use your screen recordings and explanations to train your AI.",
+            "icon": "Video",
+            "benefits": [
+              "Import tutorials",
+              "Extract explanations",
+              "Learn teaching style"
+            ]
+          },
+          {
+            "name": "Twitch",
+            "description": "Import your live coding and teaching sessions to train your AI.",
+            "icon": "Video",
+            "benefits": [
+              "Learn from live sessions",
+              "Capture interactions",
+              "Import explanations"
+            ]
+          }
+        ]
+      }
+    }
+  }
