@@ -1,9 +1,8 @@
 # avatars/models.py
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-User = get_user_model()
 
 class Agent(models.Model):
     name = models.CharField(max_length=255)
@@ -28,8 +27,8 @@ class Agent(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-class AvatarKnowledgeSource(models.Model):
-    avatar = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name='knowledge_sources')
+class AgentKnowledgeSource(models.Model):
+    agent = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name='knowledge_sources')
     title = models.CharField(max_length=255)
     source_type = models.CharField(max_length=50)  # document, video, audio, etc.
     content_hash = models.CharField(max_length=64)  # For deduplication
@@ -37,8 +36,8 @@ class AvatarKnowledgeSource(models.Model):
     vector_ids = models.JSONField(null=True)  # Store IDs of generated vectors
     created_at = models.DateTimeField(auto_now_add=True)
 
-class AvatarInteraction(models.Model):
-    avatar = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name='interactions')
+class AgentInteraction(models.Model):
+    agent = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name='interactions')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='avatar_interactions')
     message = models.TextField()
     response = models.TextField()
