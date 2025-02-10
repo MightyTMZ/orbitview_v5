@@ -39,7 +39,7 @@ class AgentKnowledgeSource(models.Model):
 class AgentInteraction(models.Model):
     agent = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name='interactions')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='avatar_interactions')
-    message = models.TextField()
+    message = models.TextField() # may change it to Rich Text in the future
     response = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(null=True)
