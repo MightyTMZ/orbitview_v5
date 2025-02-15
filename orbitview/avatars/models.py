@@ -30,6 +30,7 @@ class Agent(models.Model):
 class AgentKnowledgeSource(models.Model):
     agent = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name='knowledge_sources')
     title = models.CharField(max_length=255)
+    label = models.CharField(max_length=455, blank=True, null=True)
     source_type = models.CharField(max_length=50)  # document, video, audio, etc.
     content_hash = models.CharField(max_length=64)  # For deduplication
     processed_status = models.CharField(max_length=20)  # pending, processing, completed, failed
