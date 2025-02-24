@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Bot, Send, User, Sparkles, Brain } from "lucide-react";
 import { cn } from "@/lib/utils";
-// import { Metadata } from "next";
 
 interface Message {
   id: string;
@@ -15,26 +14,12 @@ interface Message {
   role: "user" | "assistant";
   timestamp: number;
 }
-/* 
-export const metadata: Metadata = {
-  title: "Chat with AI Agent | OrbitView",
-  description:
-    "Interact with AI agents and learn from experts in real-time through our intelligent chat interface.",
-  keywords: [
-    "AI chat",
-    "expert chat",
-    "knowledge sharing",
-    "interactive learning",
-    "AI mentor",
-  ],
-};
-*/
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      content: "Hello! I'm your AI agent assistant. How can I help you today?",
+      content: "Hello! I'm your AI avatar assistant. How can I help you today?",
       role: "assistant",
       timestamp: Date.now(),
     },
@@ -60,6 +45,32 @@ export default function Chat() {
     return `${hours}:${minutes}:${seconds}`;
   };
 
+  const backendServer = "http://127.0.0.1:8000";
+
+  const generateResponse = async (userInput: string): Promise<string> => {
+    try {
+      const response = await fetch(`${backendServer}/agents/test-chat/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: userInput,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to get response from agent");
+      }
+
+      const data = await response.json();
+      return data.response;
+    } catch (error) {
+      console.error("Error generating response:", error);
+      return "I apologize, but I'm having trouble processing your request at the moment. Please try again later.";
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -75,27 +86,28 @@ export default function Chat() {
     setInput("");
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const response = await generateResponse(input.trim());
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: generateResponse(input.trim()),
+        content: response,
         role: "assistant",
         timestamp: Date.now(),
       };
       setMessages((prev) => [...prev, aiMessage]);
+    } catch (error) {
+      console.error("Error in chat:", error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content:
+          "I apologize, but I encountered an error. Please try again later.",
+        role: "assistant",
+        timestamp: Date.now(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1000 + Math.random() * 2000);
-  };
-
-  const generateResponse = (userInput: string): string => {
-    const responses = [
-      "That's an interesting perspective! Let me share my thoughts on that...",
-      "Based on my expertise, I would approach this by...",
-      "Great question! Here's what I've learned about this topic...",
-      "Let me break this down for you...",
-      "From my experience, the key aspects to consider are...",
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
+    }
   };
 
   return (
@@ -105,7 +117,7 @@ export default function Chat() {
           <div className="flex items-center gap-3">
             <Brain className="w-8 h-8 text-[#68a2b3]" />
             <h1 className="text-3xl font-bold text-[#fbffff]">
-              Chat with AI Agent
+              Chat with AI Avatar
             </h1>
           </div>
           <div className="h-1 w-32 bg-[#3d778c] mt-4 mb-6 rounded-full" />
