@@ -45,7 +45,10 @@ export default function Chat() {
     return `${hours}:${minutes}:${seconds}`;
   };
 
-  const backendServer = "http://127.0.0.1:8000";
+  const production = true;
+  const backendServer = production
+    ? "https://orbitview.pythonanywhere.com"
+    : "http://127.0.0.1:8000";
 
   const generateResponse = async (userInput: string): Promise<string> => {
     try {
