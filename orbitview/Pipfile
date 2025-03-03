@@ -9,6 +9,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 pillow = "*"
 ollama = "*"
+requests = "*"
 
 [dev-packages]
 

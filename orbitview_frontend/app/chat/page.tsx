@@ -45,7 +45,7 @@ export default function Chat() {
     return `${hours}:${minutes}:${seconds}`;
   };
 
-  const production = true;
+  const production = false;
   const backendServer = production
     ? "https://orbitview.pythonanywhere.com"
     : "http://127.0.0.1:8000";
@@ -67,6 +67,7 @@ export default function Chat() {
       }
 
       const data = await response.json();
+      console.log(response.status);
       return data.response;
     } catch (error) {
       console.error("Error generating response:", error);

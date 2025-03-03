@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-import ollama
+import requests
+# import ollama
 
 
 @csrf_exempt
@@ -16,15 +17,21 @@ def chat(request):
             if not prompt:
                 return JsonResponse({"message": "Message could not be read by the model"}, status=400)
 
-            # Call Ollama model
-            response = ollama.generate(
-                model="llama3.2",
-                prompt=prompt
+            # Call Ollama model API
+            response = requests.post(
+                "http://localhost:11434/api/generate",
+                json={"model": "llama3.2", "prompt": prompt, "stream": False}
             )
 
-            return JsonResponse({"message": "Successful", "response": response.get("response", "")})
+            if response.status_code == 200:
+                response_data = response.json()
+                return JsonResponse({"message": "Successful", "response": response_data.get("response", "")})
+            else:
+                return JsonResponse({"message": "Error from model API", "error": response.text}, status=response.status_code)
 
         except json.JSONDecodeError:
             return JsonResponse({"message": "Invalid JSON format"}, status=400)
+        except requests.RequestException as e:
+            return JsonResponse({"message": "Request error", "error": str(e)}, status=500)
 
     return JsonResponse({"message": "Invalid request method"}, status=405)
